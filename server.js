@@ -14,8 +14,7 @@ const bodyParser = require('body-parser')
 const mongoClient = require('mongodb').MongoClient
 
 var port = process.env.PORT || 3000
-var db;
-mongoClient.connect('mongodb://myquotesdb:TJYSp0zMmkrdkEY8K0JrXj0Sr2PoH13dyvTFrJj8m3UePIEeyxs337uG1CVkbNqq22aRzBPjAPTP9BrvUyrXdg==@myquotesdb.documents.azure.com:10250/?ssl=true', function (err, database){
+var db = mongoClient.connect('mongodb://myquotesdb:TJYSp0zMmkrdkEY8K0JrXj0Sr2PoH13dyvTFrJj8m3UePIEeyxs337uG1CVkbNqq22aRzBPjAPTP9BrvUyrXdg==@myquotesdb.documents.azure.com:10250/?ssl=true', function (err, database){
     if (err) return console.log(err)
     db = database
     app.listen(port, function () {
@@ -31,7 +30,7 @@ app.get('/', function (req, res) {
 })
 
 app.post('/quotes', function (req, res) {
-    db.collections('quotes').save(req.body, function (err, result) {
+    db.collection('quotes').save(req.body, function (err, result) {
         if(err) return console.log(err)
 
         console.log('saved to database')
@@ -39,7 +38,6 @@ app.post('/quotes', function (req, res) {
     })
     console.log(req.body)
 })
-
 
 
 
