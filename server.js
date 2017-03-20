@@ -13,18 +13,18 @@ const app = express();
 const bodyParser = require('body-parser')
 const mongoClient = require('mongodb').MongoClient
 
+//Setup webserver and connect to dynamoDB on Azure
 var port = process.env.PORT || 3000
 var db = mongoClient.connect('mongodb://myquotesdb:TJYSp0zMmkrdkEY8K0JrXj0Sr2PoH13dyvTFrJj8m3UePIEeyxs337uG1CVkbNqq22aRzBPjAPTP9BrvUyrXdg==@myquotesdb.documents.azure.com:10250/?ssl=true', function (err, database){
     if (err) return console.log(err)
     db = database
     app.listen(port, function () {
-        console.log('Listen on port' + port)
+        console.log('Listen on port ' + port)
     })
 })
 
 
 app.use(bodyParser.urlencoded({extended: true}))
-
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html')
 })
