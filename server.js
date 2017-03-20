@@ -1,23 +1,25 @@
- var http = require('http')
+/*
+var http = require('http')
  var port = process.env.PORT || 1337;
  http.createServer(function(req, res) {
    res.writeHead(200, { 'Content-Type': 'text/plain' });
    res.end('Hello World\n');
  }).listen(port);
+*/
 
 
-/*
 const express = require('express')
 const app = express();
 const bodyParser = require('body-parser')
 const mongoClient = require('mongodb').MongoClient
 
+var port = process.env.PORT || 3000
 var db;
 mongoClient.connect('mongodb://myquotesdb:TJYSp0zMmkrdkEY8K0JrXj0Sr2PoH13dyvTFrJj8m3UePIEeyxs337uG1CVkbNqq22aRzBPjAPTP9BrvUyrXdg==@myquotesdb.documents.azure.com:10250/?ssl=true', function (err, database){
     if (err) return console.log(err)
     db = database
-    app.listen(3000, function () {
-        console.log('Listen on port 3000')
+    app.listen(port, function () {
+        console.log('Listen on port' + port)
     })
 })
 
@@ -38,7 +40,7 @@ app.post('/quotes', function (req, res) {
     console.log(req.body)
 })
 
-*/
+
 
 
 
